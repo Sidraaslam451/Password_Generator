@@ -1,17 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PASSWORD GENERATOR</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Password Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div id="password">
-        <h1>Random Password Generator</h1>
-        <button onclick="generatePassword()">Generate Password</button> <br> <br>
-        <div id="output"></div>
-    </div>
-    <script src="script.js"></script>
+
+  <div class="bg-grid"></div>
+
+  <main class="wrapper">
+
+    <header class="header">
+      <div class="lock-icon">🔐</div>
+      <h1 class="title">Password <span class="accent">Generator</span></h1>
+      <p class="subtitle">Secure, random passwords — instantly</p>
+    </header>
+
+    <section class="card">
+
+      <div class="output-wrap">
+        <div class="output-box" id="output">Click generate...</div>
+        <button class="copy-btn" id="copy-btn" onclick="copyPassword()" title="Copy password">
+          <span id="copy-icon">⧉</span>
+        </button>
+      </div>
+
+      <div class="strength-wrap" id="strength-wrap">
+        <div class="strength-bar">
+          <div class="strength-fill" id="strength-fill"></div>
+        </div>
+        <span class="strength-label" id="strength-label">—</span>
+      </div>
+
+      <div class="options">
+
+        <div class="option-row">
+          <label class="option-label" for="length-slider">
+            Length: <span class="option-val" id="length-val">12</span>
+          </label>
+          <input type="range" id="length-slider" class="slider" min="6" max="32" value="12" oninput="updateLength(this.value)" />
+        </div>
+
+        <div class="checkboxes">
+          <label class="check-label">
+            <input type="checkbox" id="chk-lower" checked /> Lowercase (a-z)
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="chk-upper" checked /> Uppercase (A-Z)
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="chk-numbers" checked /> Numbers (0-9)
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="chk-symbols" checked /> Symbols (!@#$)
+          </label>
+        </div>
+
+      </div>
+
+      <button class="gen-btn" onclick="generatePassword()">
+        <span class="btn-icon">⟳</span> Generate Password
+      </button>
+
+      <p class="hint" id="hint"></p>
+
+    </section>
+
+    <section class="history-section">
+      <div class="history-header">
+        <span class="history-title">Recent Passwords</span>
+        <button class="clear-btn" onclick="clearHistory()">Clear</button>
+      </div>
+      <ul class="history-list" id="history-list">
+        <li class="history-empty">No passwords generated yet</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
